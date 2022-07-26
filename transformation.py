@@ -7,11 +7,32 @@ class DataCleaner:
     def __init__(self, rows=None):
         self.rows = rows
 
+
+    def call_cleaning_function(self, column_number, data):
+
+        if column_number in [1, 13]:
+            return self.clean_name(data) 
+
+        elif column_number in [8]:
+            return self.clean_phone_number(data)
+
+        elif column_number in [11]:
+            return self.clean_invite_day(data)
+        
+        elif column_number in [12]:
+            return self.clean_invite_day(data)
+
+        else:
+            return data
+
+        
+
     def find_column_number(self, row, data):
         return row.index(data)
 
     def empty_to_null(self, data):
-        data = None
+        data = 'null'
+        return data
 
     def check_if_empty(self, data):
         if len(data) == 0:
@@ -19,16 +40,26 @@ class DataCleaner:
         return False
 
     def clean_name(self, data):
-        pass
+        return data.title()
+
+    def capitalise_string(self, data):
+        return data.capitalize()
 
     def clean_phone_number(self, data):
-        pass
+        data = data.replace("-", "")
+        data = data.replace("+44", "0")
+        data = data.replace(" (", "")
+        data = data.replace(") ", "")
+        data = ''.join(data.split())
+
+        return data
 
     def clean_degree(self, data):
         pass
 
-    def clean_invite_date(self, day, month):
-        pass
+    def clean_invite_day(self, data):
+        cleaned_day = data.lstrip('0')
+        return cleaned_day
 
     def clean_row(self, row):
 
@@ -38,16 +69,16 @@ class DataCleaner:
 
             if self.check_if_empty(data):  #If there is no value
 
-                print("empty")
-
                 cleaned_data = self.empty_to_null(data)
                 cleaned_row.append(cleaned_data)
 
             else:
 
-                print("not empty")
-
                 column_number = self.find_column_number(row, data)
+                cleaned_data = self.call_cleaning_function(column_number, data)
+                cleaned_row.append(cleaned_data)
+        
+        print(f"{cleaned_row} \n")
 
 def read_csv(filename):
 
@@ -60,7 +91,7 @@ def read_csv(filename):
 
         dc = DataCleaner(rows)
 
-        rows_to_read = 10  #CHANGE TO len(rows) to clean the entire table
+        rows_to_read = len(rows)  #CHANGE TO len(rows) to clean the entire table
 
         for i in range(first_row, rows_to_read):
             #print(rows[i])
