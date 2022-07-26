@@ -97,7 +97,10 @@ def difference_files(list1, list2):
     return len(list1) - len(list2)
 
 # def Check_new_files():
-
+#   Use the last modified attribute to add new files?
+# my_bucket = s3_resource.Bucket('data-eng-30-final-project-files')
+# for i in my_bucket.objects.all():
+#     print(str(i.last_modified)[:16])
 
 
 
