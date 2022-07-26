@@ -4,8 +4,15 @@ import json
 import pandas as pd
 import csv
 
+#   List the contents of the 'data-eng-30-final-project-files' bucket
+def list_bucket():
+    bucket = s3_resource.Bucket('data-eng-30-final-project-files')
+    object_keys = []
 
-def list_bucket(prefix = ""):
+    for i in bucket.objects.all():
+        object_keys.append(i.key)
+
+    return object_keys
     # List objects in a bucket given a path, returns each key in a list
 
     # AWS_BUCKET_PREFIX = 'Talent/Sparta'
@@ -19,22 +26,13 @@ def list_bucket(prefix = ""):
     # acad = pd.read_table(body)
     # pprint(acad)
 
-
-    objects = s3_client.list_objects(
-        Bucket=bucket_name,
-        Prefix=prefix
-    )['Contents']
-
-    return[i['Key'] for i in objects]
-
-
 def list_talents(prefix = ''):
     list_talents =[]
 
-    files = s3_client.list_objects(Bucket=bucket_name, Prefix=prefix)['Contents']
-    talent = filter(lambda x: x['Key'].endswith('.json'), files)
-    for obj in talent:
-        list_talents.append(obj['Key'])
+    object_keys = list_bucket()
+    talents = filter(lambda x: x.endswith('.json'), object_keys)
+    for obj in talents:
+        list_talents.append(obj)
 
     # list_talents_extended = []
     # [list_talents_extended.extend(i) for i in list_talents]
@@ -45,12 +43,11 @@ def list_talents(prefix = ''):
 def list_spartaday(prefix=''):
     list_spartaday = []
 
-    files = s3_client.list_objects_v2(Bucket=bucket_name, Prefix=prefix)['Contents']
-    spartaDay = filter(lambda x: x['Key'].endswith('.txt'), files)
+    object_keys = list_bucket()
+    spartaDay = filter(lambda x: x.endswith('.txt'), object_keys)
     for obj in spartaDay:
-        list_spartaday.append(obj['Key'])
+        list_spartaday.append(obj)
 
-    pprint(list_spartaday)
     return list_spartaday
 
 
@@ -109,8 +106,6 @@ def difference_files(list1, list2):
 
 #list_spartaday()
 #list_applicants()
-#list_talents()
-pprint(list_bucket())
 #extract_talent('Talent/10445.json')
 #extract_all_talent()
 #extract_all_applicants()
