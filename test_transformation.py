@@ -4,7 +4,7 @@ from pandas import read_csv
 import transformation
 import csv
 
-test_rows = ['6','Joel Melmoth','Male','04/02/1994','jmelmoth5@dedecms.com','Manchester','2 Esker Center','M14','+44 860 146 8614','Napier University','02:01','','',]
+test_row = ['6','Joel Melmoth','Male','04/02/1994','jmelmoth5@dedecms.com','Manchester','2 Esker Center','M14','+44 860 146 8614','Napier University','02:01','','',]
 
 class TestDataCleaner(unittest.TestCase):
 
@@ -19,6 +19,26 @@ class TestDataCleaner(unittest.TestCase):
     def test_empty_to_null(self):
         print('Testing empty_to_null method')
         self.assertEqual(self.dc.empty_to_null(""), "null")
+
+    def test_find_column_number(self):
+        print('Testing find_column_number method')
+        self.assertEqual(self.dc.find_column_number(test_row, 'Male'), 2)
+
+    def test_clean_name(self):
+        print('Testing clean_name method')
+        self.assertEqual(self.dc.clean_name("JoHN dOE"), "John Doe")
+
+    def test_clean_phone_number(self):
+        print('Testing clean_phone_number method')
+        self.assertEqual(self.dc.clean_phone_number("+44 860 146 8614"), "08601468614")
+
+    def test_clean_invite_day(self):
+        print('Testing clean_invite_day method')
+        self.assertEqual(self.dc.clean_invite_day("03"), "3")
+
+    def test_call_cleaning_function(self):
+        print('Testing call_cleaning_function method')
+        self.assertEqual(self.dc.call_cleaning_function(8, "+44 860-146 8614"), "08601468614")
 
 if __name__ == '__main__':
     unittest.main()

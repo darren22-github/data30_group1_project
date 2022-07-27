@@ -77,8 +77,6 @@ class DataCleaner:
                 column_number = self.find_column_number(row, data)
                 cleaned_data = self.call_cleaning_function(column_number, data)
                 cleaned_row.append(cleaned_data)
-        
-        print(f"{cleaned_row} \n")
 
 def read_csv(filename):
 
@@ -94,7 +92,6 @@ def read_csv(filename):
         rows_to_read = len(rows)  #CHANGE TO len(rows) to clean the entire table
 
         for i in range(first_row, rows_to_read):
-            #print(rows[i])
             dc.clean_row(rows[i])
 
  
