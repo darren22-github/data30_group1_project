@@ -146,11 +146,15 @@ def read_csv(filename):
 def convert_lists_to_df(data):
     
     df = pd.DataFrame(data, columns=["id", "name", "gender", "dob", "email", "city", "address", "postcode", "phone_number", "uni", "degree", "invited_date", "invited_by"])
-    df.set_index('id', inplace=True)  #So that there are not 2 id columns (one gets added to the dataframe on creation)
-    print(df)
+    #df.set_index('id', inplace=True)
+    pd.set_option("display.max_rows", None, "display.max_columns", None)
+    return df
+
 
 
 cleaned_data = read_csv(file_to_read1)
-convert_lists_to_df(cleaned_data)
+df = convert_lists_to_df(cleaned_data)
+
+df.to_csv('Jan2019ApplicantsCleaned.csv', index=False)
 
 
