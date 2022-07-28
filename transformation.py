@@ -1,12 +1,32 @@
 import csv
 
-file_to_read = 'Jan2019Applicants.csv'
+file_to_read1 = 'Jan2019Applicants.csv'
+file_to_read2 = 'Data_31_2019-05-20.csv'
+
+'''
+Todo
+
+Talent CSV:
+- Merge the invite day and month
+- 
+
+Academy CSV:
+- Add a weeks column
+- Identify which weeks each column belongs to so you don't have so many columns
+
+Scores TXT File:
+- Convert scores into decimals
+
+JSON File:
+- Convert Yes/No fields into booleans
+'''
+
+
 
 class DataCleaner:
 
     def __init__(self, rows=None):
         self.rows = rows
-
 
     def call_cleaning_function(self, column_number, data):
 
@@ -20,7 +40,7 @@ class DataCleaner:
             return self.clean_invite_day(data)
         
         elif column_number in [12]:
-            return self.clean_invite_day(data)
+            return self.clean_invite_month(data)
 
         else:
             return data
@@ -58,8 +78,20 @@ class DataCleaner:
         pass
 
     def clean_invite_day(self, data):
-        cleaned_day = data.lstrip('0')
-        return cleaned_day
+        if len(data) == 1:
+            data = "0" + str(data)
+        return data
+
+    def clean_invite_month(self, month):
+        month_dict = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04", "May": "05", "Jun": "06", "Jul": "07", "Aug": "08", "Sep": "09", "Oct": "10", "Nov": "11", "Dec": "12"}
+        month_name = month[:3]
+        year = month[3:]
+        month_name = month_dict[month_name]
+        cleaned_month = month_name + year
+        return cleaned_month
+
+    def merge_invite_date(self, day, month):
+        return day + "-" + month
 
     def clean_row(self, row):
 
@@ -78,7 +110,11 @@ class DataCleaner:
                 cleaned_data = self.call_cleaning_function(column_number, data)
                 cleaned_row.append(cleaned_data)
 
+        return cleaned_row
+
 def read_csv(filename):
+
+    cleaned_table = []
 
     first_row = 1
 
@@ -92,12 +128,16 @@ def read_csv(filename):
         rows_to_read = len(rows)  #CHANGE TO len(rows) to clean the entire table
 
         for i in range(first_row, rows_to_read):
-            dc.clean_row(rows[i])
+            cleaned_row = dc.clean_row(rows[i])
+            print(cleaned_row)
+
 
  
     f.close()
 
 
-read_csv(file_to_read)
+read_csv(file_to_read1)
+
+#read_csv(file_to_read2)
 
 
