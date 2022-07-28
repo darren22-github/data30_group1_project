@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 
 file_to_read1 = 'Jan2019Applicants.csv' #This is the file that gets cleaned
 
@@ -139,10 +140,17 @@ def read_csv(filename):
         row[3] = dc.convert_date_to_correct_format(row[3])
         row[11] = dc.convert_date_to_correct_format(row[11])
 
-        print(row)
-
-
     f.close()
+    return cleaned_table
+
+def convert_lists_to_df(data):
+    
+    df = pd.DataFrame(data, columns=["id", "name", "gender", "dob", "email", "city", "address", "postcode", "phone_number", "uni", "degree", "invited_date", "invited_by"])
+    df.set_index('id', inplace=True)
+    print(df)
 
 
-read_csv(file_to_read1)
+cleaned_data = read_csv(file_to_read1)
+convert_lists_to_df(cleaned_data)
+
+
