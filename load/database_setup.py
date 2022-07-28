@@ -8,10 +8,10 @@ class DatabaseSetup:
 
     def __init__(self):
         # CONNECTION SETUP
-        self.server = 'localhost, 1433'
-        self.database = 'final_project'
-        self.username = 'SA'
-        self.password = 'Porto@12'
+        self.server = 'server'
+        self.database = 'database'
+        self.username = 'username'
+        self.password = 'password'
 
         self.docker_final_project = pyodbc.connect(
             "DRIVER={ODBC Driver 18 for SQL Server};SERVER=" + self.server + ";DATABASE=" + self.database + ";\n"
