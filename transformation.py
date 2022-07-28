@@ -1,27 +1,6 @@
 import csv
 
-file_to_read1 = 'Jan2019Applicants.csv'
-file_to_read2 = 'Data_31_2019-05-20.csv'
-
-'''
-Todo
-
-Talent CSV:
-- Merge the invite day and month
-- 
-
-Academy CSV:
-- Add a weeks column
-- Identify which weeks each column belongs to so you don't have so many columns
-
-Scores TXT File:
-- Convert scores into decimals
-
-JSON File:
-- Convert Yes/No fields into booleans
-'''
-
-
+file_to_read1 = 'Jan2019Applicants.csv' #This is the file that gets cleaned
 
 class DataCleaner:
 
@@ -32,6 +11,9 @@ class DataCleaner:
 
         if column_number in [1, 13]:
             return self.clean_name(data) 
+
+        elif column_number in [3]:
+            return self.clean_dob(data)
 
         elif column_number in [8]:
             return self.clean_phone_number(data)
@@ -74,9 +56,6 @@ class DataCleaner:
 
         return data
 
-    def clean_degree(self, data):
-        pass
-
     def clean_invite_day(self, data):
         if len(data) == 1:
             data = "0" + str(data)
@@ -91,7 +70,24 @@ class DataCleaner:
         return cleaned_month
 
     def merge_invite_date(self, day, month):
+        if day == "null" or month == "null":
+            return "null"
         return day + "-" + month
+
+    def clean_dob(self, data):
+        return data.replace("/", "-")
+
+    def convert_date_to_correct_format(self, date): #converts dd/mm/yy to YYYY/MM/DD
+
+        if date == 'null':
+            return 'null'
+
+        split_date = date.split("-")
+        if len(split_date[2]) == 2:
+            split_date[2] = "20" + split_date[2]
+            
+        correct_format_date = split_date[2] + '-' + split_date[1] + '-' + split_date[0]
+        return correct_format_date
 
     def clean_row(self, row):
 
@@ -109,6 +105,9 @@ class DataCleaner:
                 column_number = self.find_column_number(row, data)
                 cleaned_data = self.call_cleaning_function(column_number, data)
                 cleaned_row.append(cleaned_data)
+
+        #for row in cleaned_row:
+
 
         return cleaned_row
 
@@ -129,15 +128,21 @@ def read_csv(filename):
 
         for i in range(first_row, rows_to_read):
             cleaned_row = dc.clean_row(rows[i])
-            print(cleaned_row)
+            cleaned_table.append(cleaned_row)
+
+    for row in cleaned_table: #The date is merged and cleaned in this for loop
+        merged_date = dc.merge_invite_date(row[11], row[12])
+        del row[11]
+        del row[11]
+        row.insert(11, merged_date)
+
+        row[3] = dc.convert_date_to_correct_format(row[3])
+        row[11] = dc.convert_date_to_correct_format(row[11])
+
+        print(row)
 
 
- 
     f.close()
 
 
 read_csv(file_to_read1)
-
-#read_csv(file_to_read2)
-
-

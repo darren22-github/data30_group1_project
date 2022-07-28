@@ -40,13 +40,21 @@ class TestDataCleaner(unittest.TestCase):
         print('Testing call_cleaning_function method')
         self.assertEqual(self.dc.call_cleaning_function(8, "+44 860-146 8614"), "08601468614")
 
+    def test_clean_invite_day(self):
+        print('Testing clean_invite_day method')
+        self.assertEqual(self.dc.clean_invite_day("8"), "08")
+
     def test_clean_invite_month(self):
         print('Testing clean_invite_month method')
         self.assertEqual(self.dc.clean_invite_month("Apr-19"), "04-19")
 
     def test_merge_invite_date(self):
-        pass
+        print('Testing merge_invite_date method')
+        self.assertEqual(self.dc.merge_invite_date("12", "05-23"), '12-05-23')
 
+    def test_clean_dob(self):
+        print('Testing clean_dob method')
+        self.assertEqual(self.dc.clean_dob("12/10/21"), "12-10-21")
     
 
 if __name__ == '__main__':
