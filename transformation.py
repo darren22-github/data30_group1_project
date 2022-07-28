@@ -146,7 +146,7 @@ def read_csv(filename):
 def convert_lists_to_df(data):
     
     df = pd.DataFrame(data, columns=["id", "name", "gender", "dob", "email", "city", "address", "postcode", "phone_number", "uni", "degree", "invited_date", "invited_by"])
-    df.set_index('id', inplace=True)
+    df.set_index('id', inplace=True)  #So that there are not 2 id columns (one gets added to the dataframe on creation)
     print(df)
 
 
