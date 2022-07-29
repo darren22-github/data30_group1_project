@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb7517d8-0eeb-40eb-a86a-172aa08fa7b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Extract/Check_for_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Extract/Check_for_data.py" afterDir="false" />
-    </list>
+    <list default="true" id="cb7517d8-0eeb-40eb-a86a-172aa08fa7b1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +42,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/Extract/Check_for_data.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -66,6 +64,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/Tests/test_read_all_csv.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -84,6 +83,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_read_all_csv.test_list_bucket&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -98,6 +98,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_read_all_csv.test_list_spartaday&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -112,6 +113,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_read_all_csv.test_list_talents&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
@@ -126,6 +128,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/app/Tests/test_read_all_csv.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
@@ -134,10 +137,10 @@
     <list>
       <item itemvalue="Python.Check_for_data" />
       <item itemvalue="Python.test_read_all_csv" />
-      <item itemvalue="Python tests.Python tests in test_read_all_csv.py" />
-      <item itemvalue="Python tests.Python tests for test_read_all_csv.test_list_talents" />
       <item itemvalue="Python tests.Python tests for test_read_all_csv.test_list_bucket" />
       <item itemvalue="Python tests.Python tests for test_read_all_csv.test_list_spartaday" />
+      <item itemvalue="Python tests.Python tests for test_read_all_csv.test_list_talents" />
+      <item itemvalue="Python tests.Python tests in test_read_all_csv.py" />
     </list>
     <recent_temporary>
       <list>
