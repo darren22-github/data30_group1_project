@@ -1,7 +1,4 @@
 import csv  # Importing csv file
-from io import StringIO
-
-import pandas as pd
 
 file_to_read = 'Jan2019Applicants.csv'  # Name of the sample csv to clean
 
@@ -17,7 +14,6 @@ class DataCleaner:  # Class that takes in each row of a csv file and clean it
     # Initilisation method that takes in a list of rows as an argument
     def __init__(self, rows=None):
         self.rows = rows
-
 
     # Call cleaning function that cleans data according to its index (column_number).
     # Each column number corresponds to a column title, and the data is cleaned by calling
@@ -67,7 +63,6 @@ class DataCleaner:  # Class that takes in each row of a csv file and clean it
 
         return data
 
-
     def clean_degree(self, data):
         pass
 
@@ -87,8 +82,7 @@ class DataCleaner:  # Class that takes in each row of a csv file and clean it
             if self.check_if_empty(data):  # If there is no value
                 # If it is empty, the data is changed to the string 'null' by calling the 'empty_to_null' function and
                 # appended into list 'cleaned_row'
-                column_num = find_column_number(row, data)
-                cleaned_data = self.empty_to_null(data,column_num)
+                cleaned_data = self.empty_to_null(data)
                 cleaned_row.append(cleaned_data)
 
             else:
@@ -102,46 +96,28 @@ class DataCleaner:  # Class that takes in each row of a csv file and clean it
         return cleaned_row
 
 
-def df_output(data, filename):
-    data.to_csv(f"Data/{filename}", sep=',')
-
-
 # Function that takes in filename (a csv file) as an argument
 def read_csv(filename):
-    first_row = 0  # The index from the list of rows this code block will iterate from. As the first
+    first_row = 1  # The index from the list of rows this code block will iterate from. As the first
     # element from the list of rows is the column headers, it doesn't require cleaning
 
     # code block that opens the csv file and creates a list of rows called 'rows' that will be input into
     # the DataCleaner class
-    # csv_file = csv.reader(f, delimiter=',')
-    cleaned_df = pd.DataFrame(
-        columns=['name', 'gender', 'dob', 'email', 'city', 'address', 'postcode', 'phone', 'uni', 'degree',
-                 'invited_day', 'month', 'invited_by'])
-    cleaned_list = []
-    csv_file = pd.read_csv(StringIO(filename)).applymap(str)
-    rows = csv_file.values.tolist()
-    dataCleaner = DataCleaner(rows)
-    rows_to_read = len(rows)
-    # rows = list(csv_file)
-    # dc = DataCleaner(rows)  # Instance called 'dc' created that takes in the list of rows created earlier
+    with open(filename) as f:
+        csv_file = csv.reader(f, delimiter=',')
+        rows = list(csv_file)
 
-    # rows_to_read = len(rows)  # rows_to_read is set to len(rows), the number of rows in the list of rows created
+        dc = DataCleaner(rows)  # Instance called 'dc' created that takes in the list of rows created earlier
 
-    # for loop that iterates through the list of rows from 1 to the number of rows, and calls the
-    # clean_row method in the DataCleaner class to return a new list consisting of cleaned rows
-    for i in range(first_row, rows_to_read):
-        # print(rows[i])
-        cleaned_df.loc[i] = [dataCleaner.clean_row(rows[i])[1], dataCleaner.clean_row(rows[i])[2],
-                             dataCleaner.clean_row(rows[i])[3],
-                             dataCleaner.clean_row(rows[i])[4], dataCleaner.clean_row(rows[i])[5],
-                             dataCleaner.clean_row(rows[i])[6],
-                             dataCleaner.clean_row(rows[i])[7],
-                             dataCleaner.clean_row(rows[i])[8], dataCleaner.clean_row(rows[i])[9],
-                             dataCleaner.clean_row(rows[i])[10],
-                             dataCleaner.clean_row(rows[i])[11],
-                             dataCleaner.clean_row(rows[i])[12], dataCleaner.clean_row(rows[i])[13]]
+        rows_to_read = len(rows)  # rows_to_read is set to len(rows), the number of rows in the list of rows created
 
-    return cleaned_df
-    # f.close()
+        # for loop that iterates through the list of rows from 1 to the number of rows, and calls the
+        # clean_row method in the DataCleaner class to return a new list consisting of cleaned rows
+        for i in range(first_row, rows_to_read):
+            # print(rows[i])
+            print(dc.clean_row(rows[i]))
 
-# read_csv(file_to_read)
+    f.close()
+
+
+read_csv(file_to_read)

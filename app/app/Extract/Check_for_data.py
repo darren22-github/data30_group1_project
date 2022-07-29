@@ -1,6 +1,8 @@
-from app.s3_client import *
+from pprint import pprint
+from s3_client import *
 import json
 import pandas as pd
+import csv
 
 
 #   List the contents of the 'data-eng-30-final-project-files' bucket
@@ -12,16 +14,6 @@ def list_bucket():
         object_keys.append(i.key)
 
     return object_keys
-
-def sample_talents():
-    list_of_talents = []
-    object_keys = list_bucket()
-    talents = filter(lambda x: x.endswith('.json'), object_keys)
-    object_new = list(talents)
-    for i in range(200):
-        list_of_talents.append(object_new[i])
-
-    return list_of_talents
 
 
 def list_talents(prefix=''):
@@ -93,10 +85,9 @@ def extract_all_talent():
 # EXTRACT APPLICANT
 def extract_applicant(key):
     obj = extract_object(key)
-    #df = pd.read_csv(obj['Body'])
+    df = pd.read_csv(obj['Body'])
 
-    #return df
-    return obj['Body']
+    return df
 
 
 def extract_all_applicants():
@@ -107,13 +98,12 @@ def extract_all_applicants():
 # EXTRACT SPARTA DAY
 def extract_sparta_day(key):
     obj = extract_object(key)
-    #obj_sparta_day = []
+    obj_sparta_day = []
     # obj = obj['Body'].read()
-    #for line in obj['Body'].iter_lines():
-    #    obj_sparta_day.append(line.decode('utf-8'))
+    for line in obj['Body'].iter_lines():
+        obj_sparta_day.append(line.decode('utf-8'))
 
-    #return obj_sparta_day
-    return obj['Body'].read()
+    return obj_sparta_day
 
 
 def extract_all_sparta_day():
@@ -161,4 +151,3 @@ def difference_files(list1, list2):
 # extract_all_sparta_day()
 # extract_all_courses()
 #extract_all_courses()
-#sample_talents()

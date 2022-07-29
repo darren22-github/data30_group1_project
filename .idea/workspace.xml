@@ -1,7 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb7517d8-0eeb-40eb-a86a-172aa08fa7b1" name="Changes" comment="" />
+    <list default="true" id="cb7517d8-0eeb-40eb-a86a-172aa08fa7b1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Extract/Check_for_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Extract/Check_for_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Extract/s3_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tests/load_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tests/test_read_all_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transform/Jan2019Applicants.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transform/test_transformation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transform/transform_abdul.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transform/transform_abdul.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transform/transform_weekly_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transform/transform_weekly_csv.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Transform/transformation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/load/database_insert.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/load/database_insert.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/load/database_setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/load/database_setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/Extract/Check_for_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/Transform/transform_abdul.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/Transform/transform_weekly_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Extract/Check_for_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Extract/s3_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Tests/load_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Tests/test_read_all_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Transform/Jan2019Applicants.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Transform/test_transformation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Transform/transform_abdul.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Transform/transform_weekly_csv.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/Transform/transformation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/load/database_insert.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/load/database_setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/app/test/load_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/applicant.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/application.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/load/database_insert.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/load/database_setup.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/s3_client.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data30_group1_project-main/test.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -81,6 +81,6 @@ def transformed_dataframe(dataframe):
     return dataframe
 
 
-# df = csv_to_df('Data_31_2019-05-20.csv')
-# df = transformed_dataframe(df)
-# df.to_csv('new_data.csv', sep=',')
+df = csv_to_df('Data_31_2019-05-20.csv')
+df = transformed_dataframe(df)
+df.to_csv('new_data.csv', sep=',')

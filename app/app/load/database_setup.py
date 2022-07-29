@@ -6,14 +6,15 @@ warnings.filterwarnings("ignore")  # only for this file just to ignore deprecate
 
 class DatabaseSetup:
 
-    def __init__(self, server, database, username, password):
+    def __init__(self):
         # CONNECTION SETUP
-        self.server = server
-        self.database = database
-        self.username = username
-        self.password = password
+        self.server = 'server'
+        self.database = 'database'
+        self.username = 'username'
+        self.password = 'password'
+
         self.docker_final_project = pyodbc.connect(
-            "DRIVER={ODBC Driver 17 for SQL Server};SERVER=" + self.server + ";DATABASE=" + self.database + ";\n"
+            "DRIVER={ODBC Driver 18 for SQL Server};SERVER=" + self.server + ";DATABASE=" + self.database + ";\n"
                                                                                                             "UID=" + self.username + ";PWD=" + self.password + ";TrustServerCertificate=yes;")
         self.docker_final_project.autocommit = True  # autocommit to actually commit changes to database
 
@@ -33,12 +34,11 @@ class DatabaseSetup:
         self.create_recruiters_invitation()
         self.create_tech_skills()
         self.create_student_courses()
-        self.create_sparta_scores()
 
     # METHODS
     def create_recruiters(self):
         self.cursor.execute("CREATE TABLE recruiters ("
-                            "Recruiter_id INT NOT NULL IDENTITY(1,1), "
+                            "Recruiter_id INT NOT NULL, "
                             "Recruiter_name VARCHAR(255), "
                             "PRIMARY KEY (Recruiter_id))")
 
@@ -46,7 +46,7 @@ class DatabaseSetup:
         self.cursor.execute("CREATE TABLE recruiter_invitation ("
                             "Recruiter_id INT NOT NULL, "
                             "Student_id INT NOT NULL, "
-                            "Invite_date VARCHAR(25), "
+                            "Invite_date DATE, "
                             "PRIMARY KEY (Recruiter_id, Student_id),"
                             "FOREIGN KEY (recruiter_id) REFERENCES recruiters(Recruiter_id),"
                             "FOREIGN KEY (Student_id) REFERENCES students(Student_id))")
@@ -58,9 +58,9 @@ class DatabaseSetup:
                             "Last_name VARCHAR(255), "
                             "Gender VARCHAR(20), "
                             "Recruiter_id INT, "
-                            "DOB VARCHAR(20), "
-                            "Geo_flex VARCHAR(5), "
-                            "Financial_support VARCHAR(5) ,PRIMARY KEY (Student_id), "
+                            "DOB DATE, "
+                            "Geo_flex BIT, "
+                            "Financial_support BIT PRIMARY KEY (Student_id), "
                             "FOREIGN KEY (recruiter_id) REFERENCES recruiters(Recruiter_id))")
 
     def create_contact_details(self):
@@ -81,8 +81,7 @@ class DatabaseSetup:
 
     def create_student_scores(self):
         self.cursor.execute("CREATE TABLE student_scores ("
-                            "Student_id INT NOT NULL,"
-                            "Week INT,"
+                            "Student_id INT NOT NULL, "
                             "Analytical INT, "
                             "Independent INT, "
                             "Determined INT, "
@@ -93,39 +92,39 @@ class DatabaseSetup:
 
     def create_degrees(self):
         self.cursor.execute("CREATE TABLE degrees ("
-                            "Degree_id INT NOT NULL IDENTITY(1,1), "
+                            "Degree_id INT NOT NULL, "
                             "Degree VARCHAR(255), "
                             "PRIMARY KEY (Degree_id))")
 
     def create_locations(self):
         self.cursor.execute("CREATE TABLE locations ("
-                            "Location_id INT NOT NULL IDENTITY(1,1), "
+                            "Location_id INT NOT NULL, "
                             "Locations VARCHAR(255), "
                             "PRIMARY KEY (Location_id))")
 
     def create_courses(self):
         self.cursor.execute("CREATE TABLE courses ("
-                            "Course_id INT NOT NULL IDENTITY(1,1), "
+                            "Course_id INT NOT NULL, "
                             "Course_name VARCHAR(255), "
                             "PRIMARY KEY (Course_id))")
 
     def create_trainers(self):
         self.cursor.execute("CREATE TABLE trainers ("
-                            "Trainer_id INT NOT NULL IDENTITY(1,1), "
+                            "Trainer_id INT NOT NULL, "
                             "Trainer_name VARCHAR(255), "
                             "PRIMARY KEY (Trainer_id))")
 
     def create_universities(self):
         self.cursor.execute("CREATE TABLE universities ("
-                            "University_id INT NOT NULL IDENTITY(1,1), "
+                            "University_id INT NOT NULL, "
                             "University VARCHAR(255), "
                             "PRIMARY KEY (University_id))")
 
     def create_sparta_days(self):
         self.cursor.execute("CREATE TABLE sparta_days ("
-                            "Sparta_day_id INT NOT NULL IDENTITY(1,1), "
+                            "Sparta_day_id INT NOT NULL, "
                             "Location_id INT NOT NULL, "
-                            "Dates VARCHAR(20),"
+                            "Dates DATE,"
                             "PRIMARY KEY (Sparta_day_id),"
                             "FOREIGN KEY (Location_id) REFERENCES locations(Location_id))")
 
@@ -133,13 +132,11 @@ class DatabaseSetup:
         self.cursor.execute("CREATE TABLE sparta_scores ("
                             "Student_id INT NOT NULL, "
                             "Sparta_day_id INT NOT NULL, "
-                            "Psychometric VARCHAR(20),"
-                            "Presentation VARCHAR(20),"
+                            "Psychometric DECIMAL,"
+                            "Presentation DECIMAL,"
                             "PRIMARY KEY (Student_id, Sparta_day_id),"
                             "FOREIGN KEY (Student_id) REFERENCES students(Student_id),"
                             "FOREIGN KEY (Sparta_day_id) REFERENCES sparta_days(Sparta_day_id))")
-
-
 
     def create_student_courses(self):
         self.cursor.execute("CREATE TABLE student_courses ("
@@ -152,7 +149,7 @@ class DatabaseSetup:
                             "Location_id INT NOT NULL, "
                             "Student_id INT NOT NULL, "
                             "Course_interests VARCHAR(255),"
-                            "Results VARCHAR(10),"
+                            "Results BIT,"
                             "University_id INT NOT NULL, "
                             "FOREIGN KEY (Trainer_id) REFERENCES trainers(Trainer_id),"
                             "FOREIGN KEY (Degree_id) REFERENCES degrees(Degree_id),"
@@ -163,6 +160,7 @@ class DatabaseSetup:
                             "FOREIGN KEY (Student_id) REFERENCES students(Student_id),"
                             "FOREIGN KEY (University_id) REFERENCES universities(University_id))")
 
+
 # Calling class and variable
-# project = DatabaseSetup()
-# project
+project = DatabaseSetup()
+project
