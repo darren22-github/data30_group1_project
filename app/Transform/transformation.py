@@ -49,6 +49,10 @@ class DataCleaner:
         return data.capitalize()
 
     def clean_phone_number(self, data):
+
+        if len(data) < 15:
+            return 'null'
+
         data = data.replace("-", "")
         data = data.replace("+44", "0")
         data = data.replace(" (", "")
@@ -107,9 +111,6 @@ class DataCleaner:
                 cleaned_data = self.call_cleaning_function(column_number, data)
                 cleaned_row.append(cleaned_data)
 
-        #for row in cleaned_row:
-
-
         return cleaned_row
 
 def read_csv(filename):
@@ -125,7 +126,7 @@ def read_csv(filename):
 
         dc = DataCleaner(rows)
 
-        rows_to_read = len(rows)  #CHANGE TO len(rows) to clean the entire table
+        rows_to_read = len(rows)
 
         for i in range(first_row, rows_to_read):
             cleaned_row = dc.clean_row(rows[i])
@@ -145,11 +146,11 @@ def read_csv(filename):
 
 def convert_lists_to_df(data):
     
-    df = pd.DataFrame(data, columns=["id", "name", "gender", "dob", "email", "city", "address", "postcode", "phone_number", "uni", "degree", "invited_date", "invited_by"])
-    #df.set_index('id', inplace=True)
+    df = pd.DataFrame(data, columns=["id", "name", "gender", "dob", "email", "city", "address", "postcode", 
+    "phone_number", "uni", "degree", "invited_date", "invited_by"])
+
     pd.set_option("display.max_rows", None, "display.max_columns", None)
     return df
-
 
 
 cleaned_data = read_csv(file_to_read1)
